@@ -13,3 +13,9 @@ def test_short():
     assert 'id="something"' in compiled
     assert 'src="more"' in compiled
 
+    assert short.compile.text(',here\n\tnor there') == '<div class="here">\n\tnor there\n</div>\n'
+    assert short.compile.text('$here\n\tnor there') == '<div name="here">\n\tnor there\n</div>\n'
+    assert short.compile.text('@here\n\tnor there') == '<div href="here">\n\tnor there\n</div>\n'
+    assert short.compile.text('#here\n\tnor there') == '<div id="here">\n\tnor there\n</div>\n'
+    assert short.compile.text('!here\n\tnor there') == '<div src="here">\n\tnor there\n</div>\n'
+

@@ -34,7 +34,7 @@ TAG_AND_REST = re.compile(r'((?:[^ \t{}]|\.\.)+)(.*)'.format(ESCAPED_MAGIC))
 ATTRIBUTES = re.compile(r'([{}])((?:[^ \t{}]|\.\.)+)'.format(STRAIGHT_MAGIC, ESCAPED_MAGIC))
 COMMENT_SYNTAX = re.compile(r'^::comment$')
 VERBATIM_SYNTAX = re.compile('(.+) VERBATIM$')
-DIV_SHORTCUT = re.compile(r'^(?:#|(?:\.(?!\.)))')
+DIV_SHORTCUT = re.compile(r'^(?:[{0}](?!\.))'.format(ESCAPED_MAGIC))
 AUTO_QUOTE = re.compile("""([ \t]+[^ \t=]+=)(""" + QUOTED__text + """|[^ \t]+)""")
 line_methods = []
 
