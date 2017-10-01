@@ -19,3 +19,5 @@ def test_short():
     assert short.compile.text('#here\n\tnor there') == '<div id="here">\n\tnor there\n</div>\n'
     assert short.compile.text('!here\n\tnor there') == '<div src="here">\n\tnor there\n</div>\n'
 
+    assert short.compile.text('>< script') == '<script></script>\n'
+

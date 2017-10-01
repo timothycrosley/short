@@ -36,7 +36,6 @@ COMMENT_SYNTAX = re.compile(r'^::comment$')
 VERBATIM_SYNTAX = re.compile('(.+) VERBATIM$')
 DIV_SHORTCUT = re.compile(r'^(?:[{0}](?!\.))'.format(ESCAPED_MAGIC))
 AUTO_QUOTE = re.compile("""([ \t]+[^ \t=]+=)(""" + QUOTED__text + """|[^ \t]+)""")
-line_methods = []
 
 def _auto_quote_attributes(attrs):
     def _sub(m):
@@ -50,7 +49,6 @@ def _auto_quote_attributes(attrs):
 def syntax(regex):
     def wrap(function):
         function.regex = re.compile(regex)
-        line_methods.append(function)
         return function
     return wrap
 
@@ -95,12 +93,20 @@ def self_closing_tag(m):
     return '<%s />' % apply_magic(tag)[0]
 
 
+@syntax('>< (.*)')
+def empty_tag(m):
+    tag = m.group(1).strip()
+    if tag and tag[0] in STRAIGHT_MAGIC:
+        tag = "div{}".format(tag)
+    return '<{}></{}>'.format(*apply_magic(tag))
+
+
 @syntax('(.*)')
 def _raw_text(m):
     return m.group(1).rstrip()
 
 
-line_methods = (_raw_html, _text, _outer_closing_tag, _text_enclosing_tag, self_closing_tag, _raw_text)
+line_methods = (_raw_html, _text, _outer_closing_tag, _text_enclosing_tag, self_closing_tag, empty_tag, _raw_text)
 
 
 def text(short):
