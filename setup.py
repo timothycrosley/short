@@ -62,7 +62,7 @@ except (IOError, ImportError, OSError, RuntimeError):
    readme = ''
 
 setup(name='short',
-      version='1.0.3',
+      version='1.0.4',
       description='A simple short implementation for Python3',
       long_description=readme,
       author='Timothy Crosley',

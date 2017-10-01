@@ -276,6 +276,8 @@ def indent(text, branch_method, leaf_method, pass_syntax, flush_left_syntax, flu
     """
     text = text.rstrip()
     lines = text.split('\n')
+    if lines and lines[0].startswith('!! '):
+        lines[0] = lines[0].replace('!! ', '<!DOCTYPE ') + '>'
     output = []
     indent_lines(lines, output, branch_method, leaf_method, pass_syntax, flush_left_syntax, flush_left_empty_line,
                  indentation_method, get_block=get_indented_block)
