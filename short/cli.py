@@ -66,8 +66,8 @@ def grow(files: hug.types.multiple, in_ext: hug.types.text="short", out_ext: hug
                                                                                        'HTML', 'Growing'))
                 output_file.write(text(input_file.read()))
 
-        print("   |")
-        print("   |                 >>> Done Growing! :) <<<")
-        print("")
+    print("   |")
+    print("   |                 >>> Done Growing! :) <<<")
+    print("")
 
 
