@@ -22,7 +22,7 @@
 """
 import re
 
-MAGIC_ATTRIBUTES = {'#': 'id', '@': 'href', '$': 'name', '.': 'class'}
+MAGIC_ATTRIBUTES = {'#': 'id', '@': 'href', '$': 'name', ',': 'class', '!': 'src'}
 STRAIGHT_MAGIC = ''.join(MAGIC_ATTRIBUTES.keys())
 ESCAPED_MAGIC = ''.join(re.escape(magic) for magic in MAGIC_ATTRIBUTES.keys())
 QUOTED__text = r"""(?:(?:'(?:\\'|[^'])*')|(?:"(?:\\"|[^"])*"))"""
